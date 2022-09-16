@@ -23,7 +23,7 @@ function generatePassword() { // Define password
       numbersInclude = confirm("Would you like to include numbers?") // Ask if numbers should be included
       uppercaseInclude = confirm("Would you like to include uppercase letters?"); // Ask if uppercase letters should be included
       specialInclude = confirm("Would you like to include special characters?"); // Ask if special characters should be included
-      if (lowercaseInclude || numbersInclude || uppercaseInclude || specialInclude) {
+      if (lowercaseInclude || numbersInclude || uppercaseInclude || specialInclude ) {
         if (lowercaseInclude) { // If numbers are included
           characterList += lowercase; // Add lowercase letters to the array of possibilities
         }
@@ -46,16 +46,16 @@ function generatePassword() { // Define password
           }
           console.log(generatedPassword);
           if (lowercaseInclude) { // Only if lowercase characters were selected
-            password_is_generated = including(generatedPassword,uppercase); // Run included function to check if the generated password includes lowercase characters
+            password_is_generated = Checker(generatedPassword,lowercase); // Run included function to check if the generated password includes lowercase characters
           }
           if (uppercaseInclude) { // Only if uppercase characters were selected
-            password_is_generated = including(generatedPassword,uppercase); // Run included function to check if the generated password includes uppercase characters
+            password_is_generated = Checker(generatedPassword,uppercase); // Run included function to check if the generated password includes uppercase characters
           }
           if (numbersInclude) { // Only if numbers were selected
-            password_is_generated = including(generatedPassword,numbers); // Run included function to check if the generated password includes numbers
+            password_is_generated = Checker(generatedPassword,numbers); // Run included function to check if the generated password includes numbers
           }
           if (specialInclude) { //// Only if special characters were selected
-            password_is_generated = including(generatedPassword,special); // Run included function to check if the generated password includes special characters
+            password_is_generated = Checker(generatedPassword,special); // Run included function to check if the generated password includes special characters
           }
         }
       } else {
@@ -70,10 +70,11 @@ function generatePassword() { // Define password
     alert("Please enter an integer between 8 and 128!"); // Warning
     return false; 
   }
+  characterList = "";
   return generatedPassword; // Return generated password
 }
 
-function including(pass,character) {
+function Checker(pass,character) {
   let included = false;
   let position = 0;
   while (!included) {
