@@ -46,16 +46,28 @@ function generatePassword() { // Define password
           }
           console.log(generatedPassword);
           if (lowercaseInclude) { // Only if lowercase characters were selected
-            password_is_generated = Checker(generatedPassword,lowercase); // Run included function to check if the generated password includes lowercase characters
+            password_is_generated = (new RegExp(/[a-z]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes lowercase characters
+            if (!password_is_generated) {
+              continue
+            }
           }
           if (uppercaseInclude) { // Only if uppercase characters were selected
-            password_is_generated = Checker(generatedPassword,uppercase); // Run included function to check if the generated password includes uppercase characters
+            password_is_generated = (new RegExp(/[A-Z]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes uppercase characters
+            if (!password_is_generated) {
+              continue
+            }
           }
           if (numbersInclude) { // Only if numbers were selected
-            password_is_generated = Checker(generatedPassword,numbers); // Run included function to check if the generated password includes numbers
+            password_is_generated = (new RegExp(/[0-9]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes numbers
+            if (!password_is_generated) {
+              continue
+            }
           }
           if (specialInclude) { //// Only if special characters were selected
-            password_is_generated = Checker(generatedPassword,special); // Run included function to check if the generated password includes special characters
+            password_is_generated = (new RegExp(/[ !"#$%&'()*+,-./:;<=>?@[\\\]^_`{\|}~]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes special characters
+            if (!password_is_generated) {
+              continue
+            }
           }
         }
       } else {
@@ -72,16 +84,6 @@ function generatePassword() { // Define password
   }
   characterList = "";
   return generatedPassword; // Return generated password
-}
-
-function Checker(pass,character) {
-  let included = false;
-  let position = 0;
-  while (!included) {
-    included = character.includes(pass[position]);
-    position ++;
-  }
-  return included;
 }
 
 // Add event listener to generate button
