@@ -8,11 +8,11 @@ function writePassword() {
   passwordText.value = password;
 }
 
-let characterList = "";
-let lowercase = "abcdefghijklmnopqrstuvwxyz";
-let numbers = "1234567890";
-let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-let special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+let characterList = ""; // Define empty string
+let lowercase = "abcdefghijklmnopqrstuvwxyz"; // Lowercase letters string
+let numbers = "1234567890"; // Numbers string
+let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Uppercase letters string
+let special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; // Special characters string
 
 function generatePassword() { // Define password
   let generatedPassword = ""; // Define generated password as empty string
@@ -23,7 +23,7 @@ function generatePassword() { // Define password
       numbersInclude = confirm("Would you like to include numbers?") // Ask if numbers should be included
       uppercaseInclude = confirm("Would you like to include uppercase letters?"); // Ask if uppercase letters should be included
       specialInclude = confirm("Would you like to include special characters?"); // Ask if special characters should be included
-      if (lowercaseInclude || numbersInclude || uppercaseInclude || specialInclude ) {
+      if (lowercaseInclude || numbersInclude || uppercaseInclude || specialInclude ) { // Check if at least one of the criteria was selected
         if (lowercaseInclude) { // If numbers are included
           characterList += lowercase; // Add lowercase letters to the array of possibilities
         }
@@ -47,31 +47,31 @@ function generatePassword() { // Define password
           console.log(generatedPassword);
           if (lowercaseInclude) { // Only if lowercase characters were selected
             password_is_generated = (new RegExp(/[a-z]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes lowercase characters
-            if (!password_is_generated) {
-              continue
+            if (!password_is_generated) { // If password doesn't include lowercase characters
+              continue // return to top of loop
             }
           }
           if (uppercaseInclude) { // Only if uppercase characters were selected
             password_is_generated = (new RegExp(/[A-Z]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes uppercase characters
-            if (!password_is_generated) {
-              continue
+            if (!password_is_generated) { // If password doesn't include uppercase characters
+              continue // return to top of loop
             }
           }
           if (numbersInclude) { // Only if numbers were selected
             password_is_generated = (new RegExp(/[0-9]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes numbers
-            if (!password_is_generated) {
-              continue
+            if (!password_is_generated) { // If password doesn't include numbers
+              continue // return to top of loop
             }
           }
           if (specialInclude) { //// Only if special characters were selected
             password_is_generated = (new RegExp(/[ !"#$%&'()*+,-./:;<=>?@[\\\]^_`{\|}~]/)).test(generatedPassword); // Use RegEx to assess if the generated password includes special characters
-            if (!password_is_generated) {
-              continue
+            if (!password_is_generated) { // If password doesn't include special characters
+              continue // return to top of loop
             }
           }
         }
-      } else {
-        alert("Please select at least one criteria!");
+      } else { // If no criteria are selected
+        alert("Please select at least one criteria!"); // Warning
       }
       
     } else { // If the value entered for the number of characters is invalid
@@ -82,7 +82,7 @@ function generatePassword() { // Define password
     alert("Please enter an integer between 8 and 128!"); // Warning
     return false; 
   }
-  characterList = "";
+  characterList = ""; // Reset character list
   return generatedPassword; // Return generated password
 }
 
